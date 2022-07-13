@@ -4,29 +4,29 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.lang.Character;
 public class BankAccount {
-    int balance;
-    int previousTransaction;
+    static int balance;
+    static int previousTransaction;
     String customerName;
-    String customerId;
+    int customerId;
 
     public BankAccount() {
     }
 
 
-     BankAccount(String customerName, String customerId) {
+     BankAccount(String customerName, int customerId) {
         this.customerName = customerName;
         this.customerId = customerId;
     }
 
 
 
-    void deposit(int amount){
+    static void deposit(int amount){
         if(amount > 0){
             balance = balance + amount;
             previousTransaction = amount;
         }
     }
-    void withdrawal(int amount){
+    static void withdrawal(int amount){
         if (amount > 0 ){
             balance = balance - amount;
             previousTransaction =- amount;
@@ -35,7 +35,7 @@ public class BankAccount {
         }
     }
 
-    void getPreviousTransaction(){
+    static void getPreviousTransaction(){
         if(previousTransaction > 0){
             System.out.println("Deposited today: $"+ previousTransaction);
         }else{
@@ -43,10 +43,10 @@ public class BankAccount {
         }
     }
 
-    public String menuDecor(){
+    public static String menuDecor(){
         return "-_".repeat(15);
     }
-    void showMenu() {
+   public static void showMenu() {
 
         // we set it to 0 to eventually
         char option = '\0';
@@ -54,23 +54,33 @@ public class BankAccount {
 
 
 
-        System.out.println("Welcome to People's Bank \n Your id is: " + customerId);
-        System.out.println("A.) Check Balance\n");
-        System.out.println("B.) Deposit Money\n");
-        System.out.println("C.) Withdraw Money\n");
-        System.out.println("D.)  Previous transaction\n");
+        System.out.println("Welcome to People's Bank \n Enter your Name: " );
+       String CustomerName = newScan.nextLine().toUpperCase();
+       System.out.println("Enter your Id: ");
+       int customerID = newScan.nextInt();
+
+
+        System.out.println( "This is your Name: " + CustomerName);
+        System.out.println("This is your Id: " + customerID );
+
+        //BankAccount obj1 = new BankAccount(CustomerName,customerID);
+
+        System.out.println("A.) Check Balance");
+        System.out.println("B.) Deposit Money");
+        System.out.println("C.) Withdraw Money");
+        System.out.println("D.)  Previous transaction");
         System.out.println("E.) Exit");
 
         // how to access the char using Scanner class;
 
      do {
-         System.out.println(" Choose an option , You want today\n");
+         System.out.println(menuDecor()+ " \n Choose an option , You want today \n"+ menuDecor());
          option = newScan.next().charAt(0);
-         char c = Character.toLowerCase(option);
 
 
 
-         switch (c) {
+
+         switch (option) {
              case 'A':
                  System.out.println(menuDecor() + "\n This is your bank Account Balance.");
                  System.out.println("Balance: " + balance);
@@ -80,8 +90,9 @@ public class BankAccount {
              case 'B':
                  System.out.println(menuDecor());
                  System.out.println("Amount you would like to deposit: ");
-                 int depositAmount = newScan.nextInt();
-                 deposit(Integer.parseInt(depositAmount + "\n"));
+                 long depositAmount = newScan.nextInt();
+                 deposit((int) depositAmount);
+                 System.out.println("This is your new amount: " +  balance);
                  System.out.println(menuDecor());
                  break;
 
