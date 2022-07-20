@@ -48,7 +48,7 @@ public class BankAccount {
     static String menuDecor(){
         return "-_".repeat(15);
     }
-    static String moneyFormatter(int balance)
+   static String moneyFormatter(int balance)
     {
         String currencyInstance = NumberFormat.getCurrencyInstance(Locale.US).format(balance);
         return currencyInstance;
@@ -97,7 +97,7 @@ public class BankAccount {
          switch (option) {
              case 'A':
                  System.out.println(menuDecor() + "\n This is your bank Account Balance.");
-                 System.out.printf("Balance:" + moneyFormatter(balance)+"\n");
+                 System.out.printf("Balance:" + moneyFormatter(balance) + "\n");
                  System.out.println(menuDecor());
                  break;
 
@@ -118,7 +118,7 @@ public class BankAccount {
                  System.out.println(menuDecor());
                  break;
              case 'D':
-                 System.out.println(menuDecor() + "\nThis is your previous transaction: " + moneyFormatter(previousTransaction));
+                 System.out.println(menuDecor() + "\nThis is your previous transaction: " +moneyFormatter(previousTransaction));
                  getPreviousTransaction();
                  System.out.println(menuDecor());
                  break;
